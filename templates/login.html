@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    LoanCalc | Login
+{% endblock title %}
+
+{% block navbar_login %} active {% endblock navbar_login%}
+
+{% block main %}
+    <div class="m-2 p-3 d-flex flex-column align-items-center">
+        <form action="/login" method="post" class="mb-3">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Username" type="text">
+            </div>
+            <div class="mb-3">
+                <input class="form-control" id="password" name="password" placeholder="Password" type="password">
+            </div>
+            <button class="btn btn-primary" type="submit">Log In</button>
+        </form>
+        <p>Register <a href='/register'>here</a></p>
+    </div>
+{% endblock %}

@@ -17,7 +17,7 @@
       <div class="container-fluid">
         <!--Brand-->
         
-          <a class="navbar-brand nav-home" style="font-family:'Medula One'; font-size: 35px" href="/">
+          <a class="navbar-brand nav-home" style="font-family:'Medula One'; font-size: 20px" href="/">
             JoMaCaAg's  Mortgage Loan Calculator
             <img src="/static/icons/logo.svg" style="vertical-align: middle"> 
           </a>
@@ -31,6 +31,20 @@
             <li class="nav-item">
               <a class="nav-link {% block navbar_home %}{% endblock %} nav-home" aria-current="page">Home</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link {% block navbar_history %}{% endblock %} nav-history" aria-current="page">History</a>
+            </li>
+          {% if session.user_id %}
+            <!-- User is logged in -->
+            <li class="nav-item">
+              <a class="nav-link {% block navbar_logout %}{% endblock %} nav-logout" aria-current="page">Logout</a>
+            </li>
+          {% else %}
+            <!-- User is not logged in -->
+            <li class="nav-item">
+              <a class="nav-link {% block navbar_login %}{% endblock %} nav-login" aria-current="page">Login</a>
+            </li>
+          {% endif %}
           </ul>
           <!--NavLinks-->
           <ul class="navbar-nav ms-auto mb-3 mb-lg-0">

@@ -1,7 +1,7 @@
 const home = document.querySelectorAll('.nav-home');
-const about = document.querySelectorAll('.nav-about');
-const projects = document.querySelectorAll('.nav-projects');
-const contact = document.querySelectorAll('.nav-contact');
+const history = document.querySelectorAll('.nav-history');
+const login = document.querySelectorAll('.nav-login');
+const logout = document.querySelectorAll('.nav-logout');
 const linkedin = document.querySelectorAll('.nav-linkedin');
 const github = document.querySelectorAll('.nav-github');
 
@@ -9,17 +9,17 @@ home.forEach((element) => {
   element.setAttribute('href', '/');
 });
 
-about.forEach((element) => {
-  element.setAttribute('href', '/about');
+history.forEach((element) => {
+  element.setAttribute('href', '/history');
 });
 
-projects.forEach((element) => {
-  element.setAttribute('href', '/projects');
+login.forEach((element) => {
+  element.setAttribute('href', '/login');
 });
 
-contact.forEach((element) => {
+logout.forEach((element) => {
   console.log()
-  element.setAttribute('href', '/contact');
+  element.setAttribute('href', '/logout');
 });
 
 github.forEach((element) => {
@@ -33,4 +33,3 @@ linkedin.forEach((element) => {
   element.setAttribute('href', 'https://www.linkedin.com/in/jonathan-castro-aguilar-aa3372107/');
   element.setAttribute('target', '_blank');
 });
-

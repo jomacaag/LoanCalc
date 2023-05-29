@@ -8,10 +8,93 @@
 
 {% block main %}
     <section>
-        <h1>Welcome to My Mortgage loan Calculator</h1>
-        <div><p>Thank you for visiting my personal website portfolio. Please feel free to explore my projects
-        and reach out if you have any questions or opportunities.
-        I look forward to connecting with you!</p></div>
-        <p>click <a href="history.html">here</a></p>
+        <h1>Welcome to My Mortgage Loan Calculator</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="container block rounded p-3">
+                        <h3>Loan Information</h3>
+                        <form action="/contact" method="post" class="m-4" id="loanForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="loanAmount" class="form-label">Loan Amount</label>
+                                        <input type="text" class="form-control" id="loanAmount" name="loanAmount" placeholder="Loan Amount" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="interestRate" class="form-label">Interest Rate</label>
+                                        <input type="number" step="0.01" class="form-control" id="interestRate" name="interestRate" placeholder="Interest Rate" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="downPayment" class="form-label">Down Payment</label>
+                                        <input type="number" class="form-control" id="downPayment" name="downPayment" placeholder="Down Payment" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="loanType" class="form-label">Loan Type</label>
+                                        <input type="text" class="form-control" id="loanType" name="loanType" placeholder="Loan Type" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="mortgageinsurance" class="form-label">MI</label>
+                                        <input type="number" class="form-control" id="mi" name="mi" placeholder="MI" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="upfrontMi" class="form-label">Upfront MI</label>
+                                        <input type="number" class="form-control" id="upfrontMi" name="upfrontMi" placeholder="Upfront MI" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="term" class="form-label">Term</label>
+                                        <input type="number" class="form-control" id="term" name="term" placeholder="Term" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="container block rounded p-3">
+                        <h3>Income Information</h3>
+                        <form action="/contact" method="post" class="m-4" id="incomeForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="income" class="form-label">Income</label>
+                                        <input type="number" class="form-control" id="income" name="income" placeholder="Income" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="incomeRate" class="form-label">Income Rate</label>
+                                        <input type="text" class="form-control" id="incomeRate" name="incomeRate" placeholder="Income Rate" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="debts" class="form-label">Debts</label>
+                                        <input type="number" class="form-control" id="debts" name="debts" placeholder="Debts" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="taxes" class="form-label">Taxes</label>
+                                        <input type="number" class="form-control" id="taxes" name="taxes" placeholder="Taxes" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="condoFeeHoa" class="form-label">Condo Fee / HOA</label>
+                                        <input type="number" class="form-control" id="condoFeeHoa" name="condoFeeHoa" placeholder="Condo Fee / HOA" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="insurance" class="form-label">Insurance</label>
+                                        <input type="number" class="form-control" id="insurance" name="insurance" placeholder="Insurance" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-auto">
+                    <button class="btn btn-info" type="submit" form="loanForm incomeForm">Submit</button>
+                </div>
+            </div>
+        </div>
     </section>
 {% endblock %}
