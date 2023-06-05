@@ -42,7 +42,12 @@
   }
   .btn{
     background-color: #7ddfd4;
+    color:black;
   }
   .form-label{
     color: #7ddfd4;
+  }
+  .table{
+    color: rgb(37, 37, 37);
+    background-color: #c4c6cb;
   }
