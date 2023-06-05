@@ -19,12 +19,13 @@
             <th>Interest Rate</th>
             <th>DTI</th>
             <th>PITI</th>
+            <th></th>
             <!-- Add more table headers for other columns -->
         </tr>
         {% for record in Loans %}
             <tr>
                 <td>{{ record.id }}</td>
-                <td>{{ record.timestamp }}</td>
+                <td>{{ record.timestamp.strftime('%H:%M %m-%d-%Y') }}</td>
                 <td>${{ "{:,.2f}".format(record.loanAmount) }}</td>
                 <td>{{ "{:,.2f}".format(record.interestRate) }}%</td>
                 <td>{{ "{:,.2f}".format(record.FDTI) }}/{{ "{:,.2f}".format(record.BDTI) }}</td>
