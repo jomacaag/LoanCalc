@@ -21,7 +21,7 @@ Initialize dependencies in pyhton vitrual enviroment
 ~~~bash  
 pip install virtualenv
 virtualenv venv
-source venve/bin/activate
+source venv/bin/activate
 pip install -r requirements.txt
 ~~~
 
