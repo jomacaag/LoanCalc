@@ -1,0 +1,219 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    LoanCalc | Calulated
+{% endblock title %}
+
+
+{% block navbar_home %} active {% endblock navbar_home%}
+
+
+{% block main %}
+<section>
+        <h1>Calculated Loan:</h1>
+        <form action="/calculated" method="post" class="m-4" id="loanForm">
+            <div class="container-fluid" style="max-width: 1500px;">
+                <div class="row">
+                    <div class="col-md-6 py-2">
+                        <div class="container block rounded p-3">
+                            <h3>Loan Information</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div>
+                                        <label for="purchasePrice" class="form-label mb-0">Purchase Price</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="purchasePrice" name="purchasePrice" required value="{{ purchasePrice }}">
+                                        </div>
+                                        <input type="range" min="0" max="2000000" step="500" class="purchasePriceRange form-range mt-2" value="{{ purchasePrice }}" id="purchasePriceRange" name="purchasePriceRange">
+                                    </div>
+
+                                    <div>
+                                        <label for="interestRate" class="form-label mb-0">Interest Rate:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">%</span>
+                                            <input type="text" class="form-control text-end" id="interestRate" name="interestRate" value="{{ interestRate }}" required>
+                                        </div>
+                                        <input type="range" min="0" max="15" step=".25" class="interestRateRange form-range mt-2" value="{{ interestRate }}" id="interestRateRange" name="interestRateRange">
+                                    </div>
+
+                                    <div>
+                                        <label for="downPayment" class="form-label mb-0">Down Payment:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="downPayment" name="downPayment" required value="{{ downPayment }}">
+                                        </div>
+                                        <input type="range" min="0" max="200000" step="17.5" class="downPaymentRange form-range mt-2" value="{{ downPayment }}" id="downPaymentRange" name="downPaymentRange">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="loanType" class="form-label mb-0">Loan Type:</label>
+                                        <select class="form-select" id="loanType" name="loanType" required>
+                                            <option value="FHA" {% if loanType == 'FHA' %}selected{% endif %}>FHA</option>
+                                            <option value="Conventional" {% if loanType == 'Conventional' %}selected{% endif %}>Conventional</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div>
+                                        <label for="mortgageInsurance" class="form-label mb-0">Mortgage Insurance:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">%</span>
+                                            <input type="text" class="form-control text-end" id="mortgageInsurance" name="mortgageInsurance" value="{{ mortgageInsurance }}" required>
+                                        </div>
+                                        <input type="range" min="0" max="15" step=".25" class="mortgageInsuranceRange form-range mt-2" value="{{ mortgageInsurance }}" id="mortgageInsuranceRange" name="mortgageInsuranceRange">
+                                    </div>
+
+
+                                    <div>
+                                        <label for="upfrontMI" class="form-label mb-0">Upfront MI:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">%</span>
+                                            <input type="text" class="form-control text-end" id="upfrontMI" name="upfrontMI" value="{{ upfrontMI }}" required>
+                                        </div>
+                                        <input type="range" min="0" max="15" step=".25" class="upfrontMIRange form-range mt-2" value="{{ upfrontMI }}" id="upfrontMIRange" name="upfrontMIRange">
+                                    </div>
+
+
+                                    <div>
+                                        <label for="term" class="form-label mb-0">Term (Years):</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control text-end" id="term" name="term" required value="{{ term }}">
+                                        </div>
+                                        <input type="range" min="0" max="60" step="1" class="termRange form-range mt-2" value="{{ term }}" id="termRange" name="termRange">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <div class="container block rounded p-3">
+                            <h3>Income Information</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div>
+                                        <label for="income" class="form-label mb-0">Income:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="income" name="income" value="{{ income }}" required>
+                                        </div>
+                                        <input type="range" min="0" class="form-range mt-2" value="{{ income }}" id="incomeRange" name="incomeRange" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="incomeRate" class="form-label mb-0">Income Rate:</label>
+                                        <select class="form-select" id="incomeRate" name="incomeRate" required>
+                                            <option value="Hourly" {% if incomeRate == 'Hourly' %}selected{% endif %}>Hourly</option>
+                                            <option value="Weekly" {% if incomeRate == 'Weekly' %}selected{% endif %}>Weekly</option>
+                                            <option value="Biweekly" {% if incomeRate == 'Biweekly' %}selected{% endif %}>Biweekly</option>
+                                            <option value="Monthly" {% if incomeRate == 'Monthly' %}selected{% endif %}>Monthly</option>
+                                            <option value="Salary" {% if incomeRate == 'Salary' %}selected{% endif %}>Salary</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label for="monthlyDebt" class="form-label mb-0">Monthly Debts:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="monthlyDebt" name="monthlyDebt" value="{{ monthlyDebt }}" required>
+                                        </div>
+                                        <input type="range" min="0" max="10000" class="form-range mt-2" value="{{ monthlyDebt }}" id="monthlyDebtRange" name="monthlyDebtRange" required>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div>
+                                        <label for="propertyTaxes" class="form-label mb-0">Property Taxes:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="propertyTaxes" name="propertyTaxes" value="{{ propertyTaxes }}" required>
+                                        </div>
+                                        <input type="range" min="0" max="3500" step="1" class="form-range mt-2" value="{{ propertyTaxes }}" id="propertyTaxesRange" name="propertyTaxesRange" required>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="CondoHOA" class="form-label mb-0">Condo/HOA Fees:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="CondoHOA" name="CondoHOA" value="{{ CondoHOA }}" required>
+                                        </div>
+                                        <input type="range" min="0" max="1000" step="10" class="form-range mt-2" value="{{ CondoHOA }}" id="CondoHOARange" name="CondoHOARange" required>
+                                    </div>
+
+                                    <div>
+                                        <label for="Hazard" class="form-label mb-0">Hazard Insurance:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="Hazard" name="Hazard" value="{{ Hazard }}" required>
+                                        </div>
+                                        <input type="range" min="0" max="500" step="1" class="form-range mt-2" value="{{ Hazard }}" id="HazardRange" name="HazardRange" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-auto">
+                        <button class="btn btn-info" type="submit" form="loanForm">Re-Calculate</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+
+    <section>
+        <div class="container-fluid justify-content-center table-responsive rounded block py-2" style="max-width: 950px;">
+            <table class="table table-sm  table-bordered block mb-0 " style="table-color:#c4c6cb" >
+                <thead>
+                    <tr>
+                        <th scope="col" >Loan Amount</th>
+                        <th scope="col">Loan Type</th>
+                        <th scope="col">Term (Years)</th>
+                        <th scope="col">Front/Back DTI</th>
+                        <th scope="col">PITI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>$<a name='loanAmount'>{{  "{:,.2f}".format(loanAmount) }}</a></td>
+                    <td>{{ loanType }}</td>
+                    <td>{{ term }}</td>
+                    <td><a name='FDTI' >{{ '%0.2f' % FDTI }}</a>/<a name='BDTI' >{{ '%0.2f' % BDTI }}<a></td>                    
+                    <td name='PITI' >${{ "{:,.2f}".format(PITI) }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="container mt-2">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <form action="/history" method="post">
+                            <button class="btn btn-info container-fluid" type="submit">Save Scenario</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+{% endblock main %}
+
+
+{% block scripts %} 
+
+<script type="text/javascript" src="/static/loanformat.js"></script>
+<script type="text/javascript" src="/static/loancalc.js"></script>
+
+{% endblock scripts%}

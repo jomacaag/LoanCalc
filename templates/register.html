@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}
+    LoanCalc | Register
+{% endblock title %}
+
+
+
+{% block navbar_register %} active {% endblock navbar_register%}
+
+{% block main %}
+<div class="m-2 p-3 d-flex flex-column align-items-center">
+    <form action="/register" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password"  aria-describedby="passwordHelpInline">
+              </div>
+              <div class="mb-3">
+                  <input class="form-control mx-auto w-auto" id="Confirmpass" name="confirmation" placeholder="Confirm Password" type="password">
+              </div>
+              <button class="btn btn-primary d-flex mx-auto w-auto" type="submit" >Register</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %} 
+
+<script type="text/javascript" src=""></script>
+
+{% endblock scripts %}

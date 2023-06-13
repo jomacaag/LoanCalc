@@ -1,0 +1,158 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    LoanCalc | Home
+{% endblock title %}
+
+{% block navbar_home %} active {% endblock navbar_home%}
+
+{% block main %}
+<section>
+        <h1>Welcome to My Mortgage Loan Calculator</h1>
+            <h1>New Loan:
+        </h1>
+        <form action="/calculated" method="post" class="m-4" id="loanForm">
+            <div class="container-fluid" style="max-width: 1500px;">
+                <div class="row">
+                    <div class="col-md-6 py-2">
+                        <div class="container block rounded p-3">
+                            <h3>Loan Information</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="purchasePrice" class="form-label mb-0">Purchase Price:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="purchasePrice" name="purchasePrice" required value="375,000.00">
+                                        </div>
+                                        <input type="range" min="0" max="2000000" step="500" class="purchasePriceRange form-range mt-2" value="375,000" id="purchasePriceRange" name="purchasePriceRange">
+                                    </div>
+                                    <div>
+                                        <label for="interestRate" class="form-label mb-0">Interest Rate:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">%</span>
+                                            <input type="text" class="form-control text-end" id="interestRate" name="interestRate" value="6.25" required>
+                                        </div>
+                                        <input type="range" min="0" max="15" step=".25" class="interestRateRange form-range mt-2" value="6.25" id="interestRateRange" name="interestRateRange">
+                                    </div>
+                                    <div>
+                                        <label for="downPayment" class="form-label mb-0">Down Payment:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="downPayment" name="downPayment" required value="13,125">
+                                        </div>
+                                        <input type="range" min="0" max="200000" step="17.5" class="downPaymentRange form-range mt-2" value="13125" id="downPaymentRange" name="downPaymentRange">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="loanType" class="form-label mb-0">Loan Type:</label>
+                                        <select class="form-select" id="loanType" name="loanType" required>
+                                            <option value="FHA">FHA</option>
+                                            <option value="Conventional">Conventional</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="mortgageInsurance" class="form-label mb-0">Mortgage Insurance:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">%</span>
+                                            <input type="text" class="form-control text-end" id="mortgageInsurance" name="mortgageInsurance" value="0.55" required>
+                                        </div>
+                                        <input type="range" min="0" max="15" step=".25" class="mortgageInsuranceRange form-range mt-2" value=".55" id="mortgageInsuranceRange" name="mortgageInsuranceRange">
+                                    </div>
+                                    <div>
+                                        <label for="upfrontMI" class="form-label mb-0">Upfront MI:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">%</span>
+                                            <input type="text" class="form-control text-end" id="upfrontMI" name="upfrontMI" value="1.75" required>
+                                        </div>
+                                        <input type="range" min="0" max="15" step=".25" class="upfrontMIRange form-range mt-2" value="1.75" id="upfrontMIRange" name="upfrontMIRange">
+                                    </div>
+                                    <div>
+                                        <label for="term" class="form-label mb-0">Term (Years):</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control text-end" id="term" name="term" required value="30">
+                                        </div>
+                                        <input type="range" min="0" max="60" step="1" class="termRange form-range mt-2" value="30" id="termRange" name="termRange">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <div class="container block rounded p-3">
+                            <h3>Income Information</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="income" class="form-label mb-0">Income:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="income" name="income" value="38" required>
+                                        </div>
+                                        <input type="range" min="0" max="1000"  class="form-range mt-2" value="38"  id="incomeRange" name="incomeRange" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="incomeRate" class="form-label mb-0">Income Rate:</label>
+                                        <select class="form-select" id="incomeRate" name="incomeRate" required>
+                                            <option value="Hourly">Hourly</option>
+                                            <option value="Weekly">Weekly</option>
+                                            <option value="Biweekly">Biweekly</option>
+                                            <option value="Monthly">Monthly</option>
+                                            <option value="Salary">Salary</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="monthlyDebt" class="form-label mb-0">Monthly Debts:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="monthlyDebt" name="monthlyDebt" value="825.00" required>
+                                        </div>
+                                        <input type="range" min="0" max="10000" class="form-range mt-2" value="825" id="monthlyDebtRange" name="monthlyDebtRange" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="propertyTaxes" class="form-label mb-0">Property Taxes:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="propertyTaxes" name="propertyTaxes" value="375.00" required>
+                                        </div>
+                                        <input type="range" min="0" max="3500" step="1" class="form-range mt-2" value="375" id="propertyTaxesRange" name="propertyTaxesRange" required>
+                                    </div>
+                                    <div>
+                                        <label for="CondoHOA" class="form-label mb-0">Condo/HOA Fees:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="CondoHOA" name="CondoHOA" value="150.00" required>
+                                        </div>
+                                        <input type="range" min="0" max="1000" step="10" class="form-range mt-2" value="150" id="CondoHOARange" name="CondoHOARange" required>
+                                    </div>
+                                    <div>
+                                        <label for="Hazard" class="form-label mb-0">Hazard Insurance:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="text" class="form-control text-end" id="Hazard" name="Hazard" value="75.00" required>
+                                        </div>
+                                        <input type="range" min="0" max="500" step="1" class="form-range mt-2" value="75" id="HazardRange" name="HazardRange" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-auto">
+                        <button class="btn btn-info" type="submit" form="loanForm">Calculate Scenario</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+{% endblock main %}
+
+{% block scripts %}
+
+<script type="text/javascript" src="/static/loanformat.js"></script>
+
+{% endblock scripts %}

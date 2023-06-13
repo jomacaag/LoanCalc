@@ -1,0 +1,53 @@
+.linkedinicon{
+    width: 20px;
+    height: 20px;
+    }
+  .githubicon{
+    width: 20px;
+    height: 20px;
+  }
+  .nav-link{
+    color: #7ddfd4;
+  }
+  .block{
+    background-color:#3a4555;
+    color: #7ddfd4;
+    }
+  main{
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+  main section{
+    padding: 20px;
+  }
+  
+  .nobull{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  body{
+    background-color:#1a202c;
+    color:#c4c6cb;
+  }
+  .message_flash{
+    background-color:#c9a469; 
+    color: #1a202c;
+    font-size: 1.5rem;
+  }
+  .form-control{
+    background-color:#c4c6cb;
+  }
+  .btn{
+    background-color: #7ddfd4;
+    color:black;
+  }
+  .form-label{
+    color: #7ddfd4;
+  }
+  .table{
+    color: rgb(37, 37, 37);
+    background-color: #c4c6cb;
+  }

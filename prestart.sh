@@ -1,0 +1,6 @@
+echo "custom prestart.sh running"
+echo "virtualenv venv"
+echo "source venv/bin/activate"
+echo "pip install -r requirements.txt"
+echo "flask initdb"
+echo "sleep 360"

@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    LoanCalc | History
+{% endblock title %}
+
+
+
+{% block navbar_history %} active {% endblock navbar_history%}
+
+{% block main %}
+<div class="container-fluid justify-content-center table-responsive rounded block py-2" style="max-width: 1000px;">
+    <h1>Loan History</h1>
+    <table class="table table-sm table-bordered block mb-0 table-responsive rounded text-center" style="table-color:#c4c6cb; border: none;">
+        <tr>
+            <th>ID</th>
+            <th>Timestamp</th>
+            <th>Loan Amount</th>
+            <th>Interest Rate</th>
+            <th>DTI</th>
+            <th>PITI</th>
+            <th></th>
+            <!-- Add more table headers for other columns -->
+        </tr>
+        {% for record in Loans %}
+            <tr>
+                <td>{{ record.id }}</td>
+                <td>{{ record.timestamp.strftime('%H:%M %m-%d-%Y') }}</td>
+                <td>${{ "{:,.2f}".format(record.loanAmount) }}</td>
+                <td>{{ "{:,.2f}".format(record.interestRate) }}%</td>
+                <td>{{ "{:,.2f}".format(record.FDTI) }}/{{ "{:,.2f}".format(record.BDTI) }}</td>
+                <td>{{ "{:,.2f}".format(record.PITI) }}</td>
+                <td>
+                    <form action="/calculated" method="post">
+                        <input type="hidden" name="loan_id" value="{{ record.id }}">
+                        <button class="btn btn-primary" type="submit">Load</button>
+                    </form>
+                </td> 
+                <!-- Display other columns as needed -->
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock main %}
+
+
+{% block scripts %} 
+
+<script type="text/javascript" src="/static/loanformat.js"></script>
+<script type="text/javascript" src="/static/loancalc.js"></script>
+
+{% endblock scripts %}
